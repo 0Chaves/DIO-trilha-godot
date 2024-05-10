@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddbtqgvir6aai"]
+
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_ot8y7"]
+[ext_resource type="Texture2D" uid="uid://bkx4xmvx4t02a" path="res://addons/Tiny Swords/Factions/Goblins/Troops/Torch/Red/Torch_Red.png" id="2_koswq"]
+[ext_resource type="Script" path="res://enemies/behaviors/follow_player.gd" id="3_j70we"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4npwe"]
+atlas = ExtResource("2_koswq")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jh25"]
+atlas = ExtResource("2_koswq")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_687rl"]
+atlas = ExtResource("2_koswq")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7o0i"]
+atlas = ExtResource("2_koswq")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b42m"]
+atlas = ExtResource("2_koswq")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf3bn"]
+atlas = ExtResource("2_koswq")
+region = Rect2(960, 192, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4i0vo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4npwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jh25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_687rl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7o0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b42m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf3bn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayi1r"]
+radius = 22.0
+height = 60.0
+
+[node name="Goblin" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(0, -55)
+scale = Vector2(1.72, 1.72)
+motion_mode = 1
+script = ExtResource("1_ot8y7")
+health = 20
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4i0vo")
+autoplay = "default"
+frame_progress = 0.183401
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ayi1r")
+debug_color = Color(0, 0.6, 0.701961, 0.2)
+
+[node name="FollowPlayer" type="Node" parent="."]
+script = ExtResource("3_j70we")
+speed = 0.4

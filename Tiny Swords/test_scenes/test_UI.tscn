@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1k56uk8b37xk"]
+
+[ext_resource type="PackedScene" uid="uid://bcuo5utvdh38o" path="res://player/player.tscn" id="1_f36oo"]
+[ext_resource type="Texture2D" uid="uid://cud2wnrgoix6l" path="res://addons/Tiny Swords/UI/Banners/Banner_Horizontal.png" id="2_6fg6t"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xf0sg"]
+texture = ExtResource("2_6fg6t")
+texture_margin_left = 32.0
+texture_margin_top = 16.0
+texture_margin_right = 32.0
+texture_margin_bottom = 48.0
+region_rect = Rect2(32, 48, 128, 128)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ecg7o"]
+font_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.345098)
+shadow_offset = Vector2(2, 1)
+
+[node name="TestUi" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_f36oo")]
+position = Vector2(550, 386)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -39.5
+offset_top = 29.0
+offset_right = 39.5
+offset_bottom = 65.0
+grow_horizontal = 2
+text = "00:50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 44.0
+offset_bottom = 137.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_xf0sg")
+
+[node name="GoldLabel" type="Label" parent="CanvasLayer/Panel2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_top = 9.0
+offset_right = -35.0
+offset_bottom = 53.0
+grow_horizontal = 0
+text = "20,000 GOLD"
+label_settings = SubResource("LabelSettings_ecg7o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KillsLabel" type="Label" parent="CanvasLayer/Panel2"]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 9.0
+offset_right = 149.0
+offset_bottom = 53.0
+text = "0 Kills"
+label_settings = SubResource("LabelSettings_ecg7o")
+horizontal_alignment = 1
+vertical_alignment = 1

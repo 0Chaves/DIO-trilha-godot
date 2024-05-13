@@ -256,8 +256,10 @@ radius = 140.004
 [sub_resource type="CircleShape2D" id="CircleShape2D_gkqyp"]
 radius = 50.01
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_yamyu")
+health = 70
+magic_1_interval = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -33)

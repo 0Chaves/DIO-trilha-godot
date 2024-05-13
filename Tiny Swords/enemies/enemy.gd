@@ -3,6 +3,7 @@ extends Node2D
 
 @export var health: int = 10
 @export var death_scene: PackedScene = preload("res://enemies/behaviors/death.tscn")
+@export var enemy_damage: int = 1
 
 func damage(amount: int):
 	health -= amount

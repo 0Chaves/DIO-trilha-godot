@@ -64,11 +64,12 @@ scale = Vector2(1.72, 1.72)
 motion_mode = 1
 script = ExtResource("1_ot8y7")
 health = 20
+enemy_damage = 15
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4i0vo")
 autoplay = "default"
-frame_progress = 0.183401
+frame_progress = 0.521275
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ayi1r")

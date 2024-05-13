@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://g3lxw0fbsai8"]
+
+[ext_resource type="Texture2D" uid="uid://daqb5veedfnfd" path="res://addons/Tiny Swords/Resources/Resources/M_Spawn.png" id="1_erdtv"]
+[ext_resource type="Script" path="res://misc/life_regen.gd" id="2_n7dcd"]
+
+[sub_resource type="Animation" id="Animation_ff53y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_q1ir2"]
+resource_name = "collected"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rqvld"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f60ep"]
+_data = {
+"RESET": SubResource("Animation_ff53y"),
+"collected": SubResource("Animation_q1ir2"),
+"idle": SubResource("Animation_rqvld")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rlqur"]
+radius = 30.0666
+
+[node name="Meat" type="Sprite2D"]
+position = Vector2(0, -25)
+texture = ExtResource("1_erdtv")
+hframes = 7
+frame = 6
+script = ExtResource("2_n7dcd")
+regen_amount = 20
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f60ep")
+}
+autoplay = "idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 13)
+shape = SubResource("CircleShape2D_rlqur")
